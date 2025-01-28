@@ -101,7 +101,6 @@ class VectorDB:
             if self.index is None:
                 raise ValueError("Index not found. Load the data first.")
 
-            # qetting query embeddings
             if query in self.query_cache:
                 query_embedding = self.query_cache[query]
             else:
@@ -110,7 +109,6 @@ class VectorDB:
             
             query_embedding_array = np.array([query_embedding]).astype('float32')
 
-            # Similarity search
             top_examples = []
             similarity, indices = self.index.search(query_embedding_array, len(self.metadata))
             for similarity_score, index in zip(similarity[0], indices[0]):

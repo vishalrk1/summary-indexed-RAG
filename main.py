@@ -1,11 +1,12 @@
 from rich.console import Console
 from vectordb import VectorDB
+from VectorTfIdfDB import VectorTIdfDB
 from utils import print_in_box, format_similar_doc, get_user_question
 
 API_KEY = ""
-
 if __name__ == "__main__":
-    db = VectorDB(api_key=API_KEY)
+    # db = VectorDB(api_key=API_KEY)
+    db = VectorTIdfDB(api_key=API_KEY)
     db.load_data('data/data.json')
     db.save_db()
 
@@ -14,6 +15,6 @@ if __name__ == "__main__":
 
     while True:
         question = get_user_question(console=console)
-        response = db.search(question.lower(), k=2, similarity_threshold=0.3)
+        response = db.search(question.lower(), k=2, similarity_threshold=0.3, vector_weight=0.6)
         similar_docs = format_similar_doc(response)
         print_in_box(similar_docs, title="Similar Documents", color="green")
