@@ -9,7 +9,7 @@ if __name__ == '__main__':
     for i in range(len(text_data)):
         data.append({
             'title': text_data[i].split('\n')[0],
-            'content': text_data[i]
+            'content': "".join(text_data[i].split('\n')[1:])
         })
 
     with open('data/data.json', 'w') as file:

@@ -26,10 +26,8 @@ def format_similar_doc(docs: List[Dict]) -> str:
         title = metadata.get("title", "Untitled")
         content = metadata.get("content", "")
         
-        last_line = "\n".join(content.split('\n')[1:]) if content else "No content available"
-
         formatted_docs.append(
-            f"[green]{i + 1}.[/green] {title} \n[yellow]{last_line}[/yellow]"
+            f"[green]{i + 1}.[/green] {title} \n[yellow]{content}[/yellow]"
         )
     
     return "\n\n".join(formatted_docs)
